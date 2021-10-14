@@ -1,6 +1,8 @@
 <?php 
 
 include("includes/config.php");
+include("includes/classes/Artist.php");
+include("includes/classes/Album.php");
 //session_destroy(); used for logout
 if(isset($_SESSION['userLoggedIn'])) {
 	$userLoggedIn = $_SESSION['userLoggedIn'];

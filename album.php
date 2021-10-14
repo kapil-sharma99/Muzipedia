@@ -6,9 +6,12 @@ if(isset($_GET['id'])) {
   header("Location: index.php");
 }
 
-$albumQuery = mysqli_query($con, "SELECT * FROM albums where id='$albumId'");
-$album = mysqli_fetch_array($albumQuery);
-echo $album['title'];
+$album = new Album($con, $albumId);
+
+$artist = $album->getArtist();
+
+echo $album->getTitle();
+echo $artist->getName();
 
 ?>
 
