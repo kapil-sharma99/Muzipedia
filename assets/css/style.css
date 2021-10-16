@@ -110,7 +110,6 @@ body {
 .progress {
 	background-color: rgb(0, 255, 234);
 	height: 4px;
-	width: 50%;
 	border-radius: 2px;
 }
 

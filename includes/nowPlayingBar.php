@@ -28,11 +28,11 @@
 			});
 
 			$.post("includes/handlers/ajax/getAlbumJson.php", { albumId: track.album }, function(data1) {
-				var artist = JSON.parse(data1);
-				$(".artistName span").text(artist.name);
+				var album = JSON.parse(data1);
+				$(".albumLink img").attr("src", album.artworkPath);
 			});
-			audioElement.setTrack(track.path);
-			audioElement.play();
+			audioElement.setTrack(track);
+			playSong();
 		});
 		if(play) {
 			audioElement.play();
@@ -40,6 +40,9 @@
 	}
 
 	function playSong() {
+		if(audioElement.audio.currentTime == 0) {
+			$.post("includes/handlers/ajax/updatePlays.php", {songId: audioElement.curretlyPlaying.id});
+		}
 		$(".controlButton.play").hide();
 		$(".controlButton.pause").show();
 		audioElement.play();
@@ -56,7 +59,7 @@
 		<div id="nowPlayingLeft">
 			<div class="content">
 				<span class="albumLink">
-					<img class="albumArtwork" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwbBFTIlroAhgCsgt3XUJ1pUbH5uqUdvPSgA&usqp=CAU" alt="">
+					<img class="albumArtwork" src="" alt="">
 				</span>
 				<div class="trackInfo">
 					<span class="trackName">
