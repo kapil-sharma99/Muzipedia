@@ -15,9 +15,84 @@
 		currentPlaylist = <?php echo $jsonArray; ?>;
 		audioElement = new Audio();
 		setTrack(currentPlaylist[0], currentPlaylist, false);
+		updateVolumeProgressBar(audioElement.audio);
+
+		$("#nowPlayingBarContainer").on("mousedown touchstart mousemove touchmove", function(e) {
+			e.preventDefault();
+		});
+
+		$(".playbackBar .progressBar").mousedown(function() {
+			mouseDown = true;
+		});
+
+		$(".playbackBar .progressBar").mousemove(function(e) {
+			if(mouseDown) {
+				timeFromOffset(e, this);
+			}
+		});
+
+		$(".playbackBar .progressBar").mouseup(function(e) {
+			timeFromOffset(e, this);
+		});
+
+		$(".volumeBar .progressBar").mousedown(function() {
+			mouseDown = true;
+		});
+
+		$(".volumeBar .progressBar").mousemove(function(e) {
+			if(mouseDown) {
+				var percentage = e.offsetX / $(this).width();
+				if(percentage >= 0 && percentage <= 1) {
+					audioElement.audio.volume = percentage;
+				}
+			}
+		});
+
+		$(".volumeBar .progressBar").mouseup(function(e) {
+			var percentage = e.offsetX / $(this).width();
+			if(percentage >= 0 && percentage <= 1) {
+				audioElement.audio.volume = percentage;
+			}
+		});
+
+		$(document).mouseup(function() {
+			mouseDown = false;
+		});
 	});
 
+	function timeFromOffset(mouse, progressBar) {
+		var percentage = mouse.offsetX / $(progressBar).width() * 100;
+		var seconds = audioElement.audio.duration * (percentage / 100);
+		audioElement.setTime(seconds);
+	}
+
+	function nextSong() {
+		if(repeat) {
+			audioElement.setTime(0);
+			playSong();
+			return;
+		}
+		if(currentIndex == currentPlaylist.length - 1) {
+			currentIndex = 0;
+		} else {
+			currentIndex++;
+		}
+
+		var trackToPlay = currentPlaylist[currentIndex];
+		setTrack(trackToPlay, currentPlaylist, true);
+	}
+
+	function setRepeat() {
+		repeat = !repeat;
+		var imageName = repeat ? "repeat-active.png" : "repeat.png"
+		$(".controlButton.repeat img").attr("src", "assets/images/icons/"+imageName);
+	}
+
 	function setTrack(trackId, newPlaylist, play) {
+
+		currentIndex = currentPlaylist.indexOf(trackId);
+		pauseSong();
+
 		$.post("includes/handlers/ajax/getSongJson.php", { songId: trackId }, function(data) {
 			var track = JSON.parse(data);
 			$(".trackName span").text(track.title);
@@ -91,11 +166,11 @@
 						<img src="assets/images/icons/pause.png" alt="Pause">
 					</button>
 
-					<button class="controlButton next" title="Next Button">
+					<button class="controlButton next" title="Next Button" onclick="nextSong()">
 						<img src="assets/images/icons/next.png" alt="Next">
 					</button>
 
-					<button class="controlButton repeat" title="Repeat Button">
+					<button class="controlButton repeat" title="Repeat Button" onclick="setRepeat()">
 						<img src="assets/images/icons/repeat.png" alt="Repeat">
 					</button>
 				</div>
