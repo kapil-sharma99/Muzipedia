@@ -5,6 +5,7 @@ var audioElement;
 var mouseDown = false;
 var repeat = false;
 var shuffle = false;
+var userLoggedIn;
 
 function formatTime(seconds) {
   var time = Math.round(seconds);
