@@ -1,6 +1,6 @@
 <div id="navBarContainer">
 	<nav class="navBar">
-		<span class="logo" onclick="openUrl('index.php')">
+		<span class="logo" onclick="openPage('index.php')">
 			<img src="assets/images/icons/logo.png" alt="">
 		</span>
 
