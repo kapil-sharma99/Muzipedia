@@ -157,10 +157,10 @@
 				$(".albumLink img").attr("src", album.artworkPath);
 			});
 			audioElement.setTrack(track);
-		});
-		if(play) {
-			audioElement.play();
+			if(play) {
+				playSong();
 		}
+		});
 	}
 
 	function playSong() {
