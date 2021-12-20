@@ -24,7 +24,7 @@ if(isset($_GET['term'])){
 
       timer = setTimeout(function() {
         var val = $(".searchInput").val();
-        openPage("search.php?term="+val);
+        openPage("search.php?term=" + val);
       }, 2000);
     })
   })
