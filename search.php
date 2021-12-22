@@ -11,7 +11,7 @@ if(isset($_GET['term'])){
 ?>
 
 <div class="searchContainer">
-  <h4>Search For an Artist, album or Song</h4>
+  <h4>Search For an Artist, Album or Song</h4>+
   <input type="text" class="searchInput" value="<?php echo $term; ?>" onfocus="this.value = this.value" placeholder="Start Typing...">
 </div>
 
