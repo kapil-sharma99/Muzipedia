@@ -16,6 +16,7 @@ if(isset($_GET['term'])){
 </div>
 
 <script>
+
   $(".searchInput").focus();
   $(function() {
     var timer;
@@ -27,4 +28,5 @@ if(isset($_GET['term'])){
       }, 2000);
     })
   })
+  
 </script>
