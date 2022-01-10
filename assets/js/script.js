@@ -6,9 +6,12 @@ var mouseDown = false;
 var repeat = false;
 var shuffle = false;
 var userLoggedIn;
+var timer;
 
 function openPage(url) {
-
+  if(timer != null) {
+    clearTimeout(timer);
+  }
 	if(url.indexOf("?") == -1) {
 		url = url + "?";
 	}

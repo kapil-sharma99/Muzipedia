@@ -157,7 +157,7 @@
 				var album = JSON.parse(data1);
 				$(".content .albumLink img").attr("src", album.artworkPath);
 				$(".content .albumLink img").attr("onclick", "openPage('album.php?id=" + album.id + "')");
-				$(".trackName span").attr("onclick", "openPage('album.php?id=" + album.id + "')");
+				$(".trackInfo .trackName span").attr("onclick", "openPage('album.php?id=" + album.id + "')");
 			});
 			audioElement.setTrack(track);
 			if(play) {
