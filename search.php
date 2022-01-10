@@ -12,7 +12,7 @@ if(isset($_GET['term'])){
 
 <div class="searchContainer">
   <h4>Search For an Artist, Album or Song</h4>
-  <input type="text" class="searchInput" value="<?php echo $term; ?>" onfocus="this.value = this.value" placeholder="Start Typing...">
+  <input type="text" class="searchInput" value="<?php echo $term; ?>" placeholder="Start Typing..." onfocus="this.value = this.value">
 </div>
 
 <script>
@@ -87,7 +87,7 @@ if(isset($_GET['term'])){
 <div class="artistContainer borderBottom">
 	<h2>ARTISTS</h2>
 	<?php 
-		$artistQuery = mysqli_query($con, "SELECT id FROM aritsts WHERE $name LIKE '$term%' LIMIT 10");
+		$artistQuery = mysqli_query($con, "SELECT id FROM artists WHERE name LIKE '$term%' LIMIT 10");
 		if(mysqli_num_rows($artistQuery) == 0) {
       echo "<span class='noResults' >No artists found matching ". $term . "</span>";
     }
