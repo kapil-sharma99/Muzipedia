@@ -1,24 +1,24 @@
 <?php include("includes/includedFiles.php");
 
 if(isset($_GET['id'])) {
-  $albumId = $_GET['id'];
+  $playlistId = $_GET['id'];
 } else {
   header("Location: index.php");
 }
 
-$album = new Album($con, $albumId);
-$artist = $album->getArtist();
-$artistId = $artist->getId();
+$playlist = new Playlist($con, $playlistId);
+$owner = new User($con, $playlist->getOwner());
 ?>
 
 <div class="entityInfo">
   <div class="leftSection">
-    <img src="<?php echo $album->getArtworkPath(); ?>" alt="">
+    <img src="assets/images/icons/playlist.png" alt="">
   </div>
   <div class="rightSection">
-    <h2><?php echo $album->getTitle(); ?></h2>
-    <p role="link" tabindex="0" onclick="openPage('artist.php?id=$artistId')">By <?php echo $artist->getName(); ?></p>
-    <p><?php echo $album->getNumberOfSongs(); ?> songs</p>
+    <h2><?php echo $playlist->getName(); ?></h2>
+    <p>By <?php echo $playlist->getOwner(); ?></p>
+    <p><?php echo $playlist->getNumberOfSongs(); ?> songs</p>
+    <button class="button">DELETE PLAYLIST</button>
   </div>
 </div>
 
@@ -26,7 +26,7 @@ $artistId = $artist->getId();
   <ul class="tracklist">
     <?php 
     
-    $songIdArray = $album->getSongIds();
+    $songIdArray = array();//$album->getSongIds();
     $i = 1;
     foreach($songIdArray as $songId) {
       $albumSong = new Song($con, $songId);
