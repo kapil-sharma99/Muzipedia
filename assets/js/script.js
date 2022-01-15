@@ -26,8 +26,26 @@ function openPage(url) {
 function createPlaylist() {
   var alert = prompt("Please enter the name of your playlist: ");
   if(alert != null) {
-    $.post("includes/handlers/ajax/createPlaylist.php", { name: alert, username: userLoggedIn }).done(function() {
+    $.post("includes/handlers/ajax/createPlaylist.php", { name: alert, username: userLoggedIn }).done(function(error) {
       //do something when ajax return
+      if(error != "") {
+        alert(error);
+        return;
+      }
+      openPage("yourMusic.php");
+    });
+  }
+}
+
+function deletePlaylist(playlistId) {
+  var prompt = confirm("Are you sure you want to delete this playlist?");
+  if(prompt == true) {
+    $.post("includes/handlers/ajax/deletePlaylist.php", {playlistId: playlistId}).done(function(error) {
+      //do something when ajax return
+      if(error != "") {
+        alert(error);
+        return;
+      }
       openPage("yourMusic.php");
     });
   }
