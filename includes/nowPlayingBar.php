@@ -86,7 +86,6 @@
 		} else {
 			currentIndex++;
 		}
-
 		var trackToPlay = shuffle ? shufflePlaylist[currentIndex] : currentPlaylist[currentIndex];
 		setTrack(trackToPlay, currentPlaylist, true);
 	}
