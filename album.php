@@ -47,7 +47,7 @@ $artistId = $artist->getId();
               </div>
 
               <div class='trackOptions'>
-                <img class='OptionsButtons' src='assets/images/icons/more.png' />
+                <img class='OptionsButtons' src='assets/images/icons/more.png' onclick='showOptionsMenu(this)' />
               </div>
 
               <div class='trackDuration'>
