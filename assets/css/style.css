@@ -490,6 +490,10 @@ input:focus {
 	display: none;
 }
 
+.trackOptions img {
+	cursor: pointer;
+}
+
 .optionsMenu .item {
 	width: 100%;
 	padding: 12px 20px;
