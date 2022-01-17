@@ -68,7 +68,7 @@ $artistId = $artist->getId();
 
 <nav class="optionsMenu">
   <input type="hidden" class="songId">
-  <div class="item">Add to Playlist</div>
+  <?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn); ?>
   <div class="item">Share Link</div>
   <div class="item">Favorite</div>
 </nav>
