@@ -65,3 +65,10 @@ $artistId = $artist->getId();
     </script>
   </ul>
 </div>
+
+<nav class="optionsMenu">
+  <input type="hidden" class="songId">
+  <div class="item">Add to Playlist</div>
+  <div class="item">Share Link</div>
+  <div class="item">Favorite</div>
+</nav>
