@@ -20,11 +20,19 @@ $(window).scroll(function() {
 });
 
 $(document).on("change", "select.playlists", function() {
-  var playlistId = $(this).val();
-  var songId = $(this).prev(".songId").val();
+  var select = $(this);
+  var playlistId = select.val();
+  var songId = select.prev(".songId").val();
 
-  console.log("PlaylistID: " + playlistId);
-  console.log("SongID: " + songId);
+  $.post("includes/handlers/ajax/addToPlaylist.php", { playlistId: playlistId, songId: songId })
+  .done(function(error) {
+    if(error != "") {
+      alert(error);
+      return;
+    }
+    hideOptionsMenu();
+    select.val("");
+  })
 });
 
 function openPage(url) {
