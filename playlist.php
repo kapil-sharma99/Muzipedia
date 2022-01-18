@@ -74,4 +74,5 @@ $owner = new User($con, $playlist->getOwner());
   <?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
   <div class="item">Share Link</div>
   <div class="item">Favorite</div>
+  <div class="item" onclick="removeFromPlaylist(this, '<?php echo $playlistId; ?>')">Remove From Playlist</div>
 </nav>
