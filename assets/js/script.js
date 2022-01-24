@@ -36,10 +36,10 @@ $(document).on("change", "select.playlists", function() {
 });
 
 function updateEmail(emailClass) {  
-  var emailValue = $(".", emailClass).val();
+  var emailValue = $("." + emailClass).val();
   $.post("includes/handlers/ajax/updateEmail.php", {email: emailValue, username: userLoggedIn})
   .done(function(response) {
-    $(".", emailClass).nextAll(".message").text(response);
+    $("." + emailClass).nextAll(".message").text(response);
   })
 }
 
